@@ -1,3 +1,42 @@
+let TRUE = (x,y)=>x;
+let FALSE = (x,y)=>y;
+let IF = (bool, then, else) =>{
+    return bool(then, else);
+}
+let AND =(b1, b2)=>{
+    return b1(b2, FALSE);
+}
+let OR = (b1,b2)=>{
+    return b1(TRUE, b2);
+}
+let NOT = (b1)=>{
+    return b1(FALSE,TRUE);
+}
+
+/****************** church number ***********************/
+let ZERO = (s,z) =>z;
+let ONE = (s,z) =>s(z);
+let TWO = (s,z)=>s(s(z));
+
+let showNumber = (num) =>{console.log(num(e=>s+1,0))}
+
+let ADD = (x,y)=>{
+    return (s,z) => x(s,y(s,z));
+}
+
+let MULTIPLY = (x,y)=>{
+    return (s,z) =>{
+        return x(z=>y(s,z),z);
+    }
+}
+
+let EXP = (x,y)=>{
+    return (s,z)=>{
+        //return y((s,z)=>x(s,z), s,z);
+    }
+}
+
+
 let cons = (x,y)=>{
     return (m)=>{
         if (m ==0) return x;
